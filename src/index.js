@@ -3,8 +3,6 @@ const searchForm = document.querySelector(".search-form");
 const inputNode = document.querySelector(".search-input");
 const searchButtonNode = document.querySelector(".search-button");
 const temperature = document.querySelector(".temperature");
-const celsiusLink = document.querySelector("#celsius");
-const fahrenheitLink = document.querySelector("#fahrenheit");
 const currentCityNode = document.querySelector(".current-city");
 const humidityNode = document.querySelector("#humidity");
 const windNode = document.querySelector("#wind");
@@ -20,9 +18,9 @@ const days = [
   "Monday",
   "Tuesday",
   "Wednesday",
-  "Thuesday",
+  "Thursday",
   "Friday",
-  "Saterday",
+  "Saturday",
 ];
 
 function formatCurrentDate(date) {
@@ -33,12 +31,10 @@ function formatCurrentDate(date) {
 }
 
 function formatDate(timestamp) {
-  let date = new Date(timestamp);
+  let date = new Date(timestamp * 1000);
   let dayIndex = date.getDay();
-  console.log(dayIndex);
-  let hours = date.getHours();
 
-  return `${days[dayIndex]} ${hours}`;
+  return `${days[dayIndex]}`;
 }
 
 function convertTempToCelsius(e) {
@@ -52,16 +48,15 @@ function convertTempToFahrenheit(e) {
 currentDateNode.innerHTML = `${formatCurrentDate(new Date())}`;
 
 function displayForecast(response) {
-  console.log(response.data.daily);
   const forecastData = response.data.daily;
 
-  let forecastHTML = `<ul class="row">`;
+  let forecastHTML = `<ul class="forecast-list">`;
   forecastData.forEach(function (day, index) {
     if (index < 6) {
       forecastHTML =
         forecastHTML +
         `
-      <li class="forecast__day">
+      <li class="forecast-day">
         <p class="weak-day">${formatDate(day.dt)}</p>
 
         <img
@@ -94,7 +89,7 @@ function getForecast(coordinates) {
 function getData(city) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(url).then((response) => {
-    // getForecast(response.data.coord);
+    getForecast(response.data.coord);
 
     const data = response.data.main;
     celsiusTemperature = data.temp;
@@ -121,23 +116,6 @@ function onSearchButtonClick(event) {
   getData(city);
 }
 
-function onCelsiusClick(event) {
-  event.preventDefault(event);
-  temperature.innerHTML = Math.round(celsiusTemperature);
-  fahrenheitLink.classList.remove("active");
-  celsiusLink.classList.add("active");
-}
-
-function onFahrenheitClick(event) {
-  event.preventDefault(event);
-  const fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
-  temperature.innerHTML = Math.round(fahrenheitTemp);
-  fahrenheitLink.classList.add("active");
-  celsiusLink.classList.remove("active");
-}
-
 searchForm.addEventListener("submit", onSearchButtonClick);
-celsiusLink.addEventListener("click", onCelsiusClick);
-fahrenheitLink.addEventListener("click", onFahrenheitClick);
 
 getData("Lviv");

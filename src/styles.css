@@ -85,8 +85,7 @@ body {
 
 .current-day {
   display: flex;
-  justify-content: space-around;
-  margin: 30px 0;
+  margin: 15px 0;
   padding: 10px;
 }
 
@@ -95,22 +94,13 @@ body {
   font-size: 20px;
 }
 
-.current-day .units a {
-  text-decoration: none;
-}
-
-.current-day .units .active {
-  font-weight: 700;
-  color: #158cba;
-  cursor: default;
-}
-
-.current-day .active:hover {
-  cursor: none;
-}
-
 .column {
   width: 45%;
+}
+
+.column:first-child {
+  display: flex;
+  align-items: center;
 }
 
 .column:last-child {
@@ -182,4 +172,32 @@ footer {
 footer a {
   color: #158cba;
   font-weight: bold;
+}
+
+.forecast-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.forecast-day {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.forecast-day:hover {
+  background-color: #bbd7d9;
+}
+
+.forecast-temperature-max {
+  color: crimson;
+}
+
+.forecast-temperature-min {
+  color: #158cba;
 }
