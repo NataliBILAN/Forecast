@@ -1,5 +1,6 @@
 body {
   font-family: "Montserrat", sans-serif;
+  background: #e8f3f4;
 }
 
 .current-city {
@@ -11,23 +12,65 @@ body {
 }
 
 .forecast-wrapper {
+  width: 850px;
+  background-color: #ffffff;
   margin: 10px auto;
-  padding: 10px;
-  border: 1px solid #158cba;
+  padding: 20px;
   box-shadow: 10px 10px 5px 0px rgba(187, 215, 217, 0.75);
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(187, 215, 217, 0.75);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(187, 215, 217, 0.75);
+  border-radius: 5px;
+}
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 80px;
+  margin-bottom: 30px;
+}
+
+.logo img {
+  display: block;
+  width: 100%;
 }
 
 .search-form {
-  width: 450px;
+  width: 650px;
   display: flex;
-  margin: 10px 0 30px 0;
+  margin: 10px 0 50px 0;
 }
 
 .search-input {
   width: 100%;
   margin-right: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: beige;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  line-height: 36px;
+  font-size: 18px;
+  color: #158cba;
+}
+
+.search-button {
+  width: 200px;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  background-color: #158cba;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.search-button:hover {
+  opacity: 0.8;
+}
+
+.search-input:focus {
+  outline: none;
 }
 
 .city {
@@ -41,10 +84,41 @@ body {
 }
 
 .current-day {
+  display: flex;
+  justify-content: space-around;
+  margin: 30px 0;
   padding: 10px;
-  border-right: 1px solid #158cba;
-  font-size: 38px;
 }
+
+#today {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.current-day .units a {
+  text-decoration: none;
+}
+
+.current-day .units .active {
+  font-weight: 700;
+  color: #158cba;
+  cursor: default;
+}
+
+.current-day .active:hover {
+  cursor: none;
+}
+
+.column {
+  width: 45%;
+}
+
+.column:last-child {
+  padding-top: 20px;
+  padding-left: 15px;
+  border-left: 1px solid #158cba;
+}
+
 .forecast-list {
   display: flex;
   justify-content: space-between;
@@ -76,8 +150,36 @@ body {
   font-weight: bold;
 }
 
+#weather-desc {
+  text-transform: capitalize;
+}
+
+.temperature {
+  font-size: 38px;
+}
+
+.humidity {
+  margin-bottom: 20px;
+}
+
 .humidity,
 .wind {
+  font-size: 20px;
   font-weight: bold;
-  font-size: 18px;
+  color: #158cba;
+}
+
+#humidity,
+#wind {
+  font-size: 20px;
+}
+
+footer {
+  padding: 30px 10px;
+  border-top: 1px solid #158cba;
+}
+
+footer a {
+  color: #158cba;
+  font-weight: bold;
 }
